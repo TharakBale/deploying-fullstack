@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import ReviewList from './components/ReviewList';
+import ReviewForm from './components/ReviewForm';
 import './App.css';
 
+
 function App() {
+  const [refresh, setRefresh] = useState(false);
+
+  const handleReviewAdded = () => {
+    setRefresh(!refresh);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Book Review App</h1>
+      <ReviewForm onReviewAdded={handleReviewAdded} />
+      <ReviewList key={refresh} />
     </div>
   );
 }
